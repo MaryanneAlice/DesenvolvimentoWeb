@@ -11,7 +11,7 @@ package entidades;
  */
 public class Psicologo {
     
-    private String nome, forma_atendimento, rua, numero,
+    private String nome, rua, numero, 
             bairro, cidade, EMail, login, senha, crp, contato, contatoOp;
 
     public Psicologo() {
@@ -25,13 +25,6 @@ public class Psicologo {
         this.nome = nome;
     }
 
-    public String getForma_atendimento() {
-        return forma_atendimento;
-    }
-
-    public void setForma_atendimento(String forma_atendimento) {
-        this.forma_atendimento = forma_atendimento;
-    }
 
     public String getRua() {
         return rua;
@@ -111,6 +104,11 @@ public class Psicologo {
 
     public void setContatoOp(String contatoOp) {
         this.contatoOp = contatoOp;
+    }
+    
+        @Override
+    public String toString() {
+        return "Psicologo{" + "nome=" + nome + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", EMail=" + EMail + ", login=" + login + ", senha=" + senha + ", crp=" + crp + ", contato=" + contato + ", contatoOp=" + contatoOp + '}';
     }
     
 }

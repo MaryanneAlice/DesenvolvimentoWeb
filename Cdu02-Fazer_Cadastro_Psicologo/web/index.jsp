@@ -23,11 +23,13 @@
     <link href="css/bootstrap-select.css" rel="stylesheet">
     
     <!--SCRIPT-->
+    <!--
+    
+    <script src="js/bootstrapValidator.js"></script>-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
     <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrapValidator.js"></script>
-    <script src="jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
   </head>
     
   <body>
@@ -93,7 +95,7 @@
                                             <span class="glyphicon glyphicon-ok check-mark"></span>
                                         </a>
                                     </li>
-                                    <li data-original-index="0" class="">
+                                    <li data-original-index="2" class="">
                                         <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
                                             <span class="text">Unimed Natal</span>
                                             <span class="glyphicon glyphicon-ok check-mark"></span>
@@ -107,11 +109,11 @@
                                     </li>
                                 </ul>
                                 </div>
-                            <select class="selectpicker show-menu-arrow form-control" multiple="">                    
-                              <option>Privado</option>
-                              <option>Amil</option>
-                              <option>Unimed Natal</option>
-                              <option>Hapvida</option>
+                                <select name="select_atendimento" class="selectpicker show-menu-arrow form-control" multiple="" required>                    
+                                <option value="privado">Privado</option>
+                                <option value="amil">Amil</option>
+                                <option value="unimed-natal">Unimed Natal</option>
+                                <option value="hapvida">Hapvida</option>
                             </select>
                             </div>
                         </div>
@@ -136,7 +138,7 @@
                                         <label class="control-label">Rua</label>
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" name="rua"/>
+                                        <input type="text" class="form-control" name="rua" required/>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +153,7 @@
                                         <label class="control-label">Número</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" name="numero"/>
+                                        <input type="text" class="form-control" name="numero" required/>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +171,7 @@
                                         <label class="control-label">Bairro</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="bairro"/>
+                                        <input type="text" class="form-control" name="bairro" required/>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +185,7 @@
                                         <label class="control-label">Cidade</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="cidade"/>
+                                        <input type="text" class="form-control" name="cidade" required/>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +200,7 @@
                             <label class="control-label">Telefone Comercial</label>
                         </div>
                     <div class="col-6 col-md-7">
-                        <input type="text" class="form-control" name="contato"/>
+                        <input type="text" class="form-control" name="contato" required/>
                     </div>
                     </div>
                 </div>
@@ -209,7 +211,7 @@
                             <label class="control-label">Telefone Opcional</label>
                         </div>
                     <div class="col-6 col-md-7">
-                        <input type="text" class="form-control" name="contatoOp"/>
+                        <input type="text" class="form-control" name="contatoOp" required/>
                     </div>
                     </div>
                 </div>
@@ -303,7 +305,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/scriptValidator.js"></script>
+    <!--<script src="js/scriptValidator.js"></script>-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
           var mySelect = $('#first-disabled2');

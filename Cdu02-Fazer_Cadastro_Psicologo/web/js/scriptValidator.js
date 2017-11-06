@@ -3,9 +3,9 @@ $(document).ready(function() {
         message: 'O valor não é válido',
         excluded: [':disabled', ':hidden', ':not(:visible)'],
         feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
+            valid: '',
+            invalid: '',
+            validating: ''
         },
         fields: {
             nome_completo: {

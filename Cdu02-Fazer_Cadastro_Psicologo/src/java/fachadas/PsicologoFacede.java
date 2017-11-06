@@ -7,6 +7,7 @@ package fachadas;
 
 import dao.PsicologoDAO;
 import entidades.Psicologo;
+import entidades.TipoAtendimento;
 import java.sql.SQLException;
 
 /**
@@ -15,10 +16,8 @@ import java.sql.SQLException;
  */
 public class PsicologoFacede {
     
-    private static PsicologoDAO dao = new PsicologoDAO();
-
-    public static boolean inserir(Psicologo psic) throws SQLException {
-        return dao.inserir(psic);
+    public static boolean inserir(Psicologo psic, TipoAtendimento tp) throws SQLException {
+        return PsicologoDAO.inserir(psic, tp);
     }
     
 }

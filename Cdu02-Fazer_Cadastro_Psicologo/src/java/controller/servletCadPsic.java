@@ -16,8 +16,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entidades.Psicologo;
+import entidades.TipoAtendimento;
 import fachadas.PsicologoFacede;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,13 +76,12 @@ public class servletCadPsic extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             //processRequest(request, response);
-            
-        Psicologo psic = new Psicologo();
-        PsicologoDAO dao = new PsicologoDAO();
-          
+         
+             
         String nome = request.getParameter("nome_completo");
         String crp = request.getParameter("crp");
-        String formAtend = request.getParameter("select_atendimento");
+        //String formAtend = request.getParameter("select_atendimento");
+        //String tipoAtendimento = Arrays.toString(request.getParameterValues("select_atendimento"));
         String rua = request.getParameter("rua");
         String numero = request.getParameter("numero");
         String bairro = request.getParameter("bairro");
@@ -91,9 +92,30 @@ public class servletCadPsic extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("conf_senha");
         
+        TipoAtendimento ta = new TipoAtendimento();
+        String[] atend = request.getParameterValues("select_atendimento");
+        ta.setCrp(crp);
+        for (int i = 0; i < 4; i++) {
+            if (atend[i].equals("privado")){
+                ta.setPrivado(true);
+            }
+            if (atend[i].equals("amil")){
+                ta.setAmil(true);
+            }
+            if (atend[i].equals("unimed-natal")){
+                ta.setUnimedNatal(true);
+            }
+            if (atend[i].equals("hapvida")){
+                ta.setHapvida(true);
+            }
+        }
+        
+        
+        
+        Psicologo psic = new Psicologo();
         psic.setCrp(crp);
         psic.setNome(nome);
-        psic.setForma_atendimento(formAtend);
+        //psic.setForma_atendimento(tipoAtendimento);
         psic.setRua(rua);
         psic.setNumero(numero);
         psic.setBairro(bairro);
@@ -103,16 +125,17 @@ public class servletCadPsic extends HttpServlet {
         psic.setEMail(email);
         psic.setLogin(login);
         psic.setSenha(senha);
-        
-
+               
             try {
-                if (PsicologoFacede.inserir(psic)) {
+                if (PsicologoFacede.inserir(psic, ta)) {
                     response.sendRedirect("sucesso.jsp");
                 } else {
                     response.sendRedirect("erro.jsp");
-                }   } catch (SQLException ex) {
+                }   
+            } catch (SQLException ex) {
                 Logger.getLogger(servletCadPsic.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         
     }
 

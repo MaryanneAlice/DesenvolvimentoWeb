@@ -31,6 +31,7 @@
     <script src="js/bootstrap-select.js"></script>
     <script src="js/bootstrapValidator.js"></script>-->
     <script src="vendor/jquery/jquery.min.js"></script>
+
   </head>
 
   <body>
@@ -38,26 +39,25 @@
         <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand bem_logo" href="#">bem</a>
+          <a class="navbar-brand bem_logo" href="#">bem</a>
       </div>
     </nav>
-        
+
     <!-- Page Content -->
     <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
-      
         <%
-           /* String nome_completo = null;
+            /* String nome_completo = null;
                 if((String)session.getAttribute("nome") == null){
                     response.sendRedirect("index.jsp");
-             }*/
+               } */
         %>
       <div class="jumbotron">
-        <h1 class="display-1">Oii</h1>
+        <h1 class="display-1">OPS...</h1>
         <br/><br/><br/>
-        <h1>Sua solicitação nos foi enviada!</h1><br/>
-        <h3>Responderemos o mais breve possível =D</h3>
+        <h1>Ocorreu um erro! </h1><br/>
+        <h2>Nossos desenvolvedores já estão trabalhando para resolvê-lo =)</h2>
         <br/>
       </div>
       <!-- /.jumbotron -->

@@ -19,12 +19,18 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link href="css/auxiliar.css" rel="stylesheet">
-
-
+    <link href="css/selected-css.css" rel="stylesheet">
+    <link href="css/bootstrap-select.css" rel="stylesheet">
+    
+    <!--SCRIPT-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrapValidator.js"></script>-->
+    <script src="vendor/jquery/jquery.min.js"></script>
   </head>
 
   <body>
@@ -42,10 +48,10 @@
       <!-- Page Heading/Breadcrumbs -->
       
         <%
-            String nome_completo = null;
+           /* String nome_completo = null;
                 if((String)session.getAttribute("nome") == null){
                     response.sendRedirect("index.jsp");
-                }
+             }*/
         %>
       <div class="jumbotron">
         <h1 class="display-1">Oii</h1>

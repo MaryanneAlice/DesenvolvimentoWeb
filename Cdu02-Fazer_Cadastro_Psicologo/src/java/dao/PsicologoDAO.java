@@ -6,9 +6,11 @@
 package dao;
 
 import entidades.Psicologo;
+import entidades.TipoAtendimento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import service.ConexaoBDD;
@@ -21,22 +23,21 @@ import static service.ConexaoBDD.getConnection;
  */
 public class PsicologoDAO {
     
-   private com.mysql.jdbc.Connection connection;
+    private static Connection connection;
 
     public PsicologoDAO() {
         connection = ConexaoBDD.getConnection();
     }
     
-    public boolean inserir(Psicologo psic) throws SQLException {
-        getConnection();
+    public static boolean inserir(Psicologo psic, TipoAtendimento tp) throws SQLException {
         boolean r = false;
-        PreparedStatement ps;
-         ps = connection.prepareStatement ("INSERT INTO cad_psicologo(crp, nome, forma_atendimento, rua,"
-                 + " numero, bairro, cidade, telefoneComercial, telefoneOutro, email, login, senha) "
-                 + "values(?,?,?,?,?,?,?,?,?,?,?,?)");
+        getConnection();
+        PreparedStatement ps, p;
+        try {
+            ps = connection.prepareStatement ("INSERT INTO cad_psicologo (crp, nome, rua, numero, bairro, cidade, "
+                    + "telefoneComercial, telefoneOutro, email, login, senha) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
             ps.setString(1, psic.getCrp());
             ps.setString(2, psic.getNome());
-            ps.setString(3, psic.getForma_atendimento());
             ps.setString(4, psic.getRua());
             ps.setString(5, psic.getNumero());
             ps.setString(6, psic.getBairro());
@@ -46,14 +47,23 @@ public class PsicologoDAO {
             ps.setString(10, psic.getEMail());
             ps.setString(11, psic.getLogin());
             ps.setString(12, psic.getSenha());
-
+            
+            p = connection.prepareStatement("INSERT INTO tipoatendimento (crp, privado, amil, unimedNatal, hapvida)"
+                    + " VALUES (?, ?, ?, ?, ?);");
+            p.setString(1, tp.getCrp());
+            p.setBoolean(2, tp.isPrivado());
+            p.setBoolean(3, tp.isAmil());
+            p.setBoolean(4, tp.isUnimedNatal());
+            p.setBoolean(5, tp.isHapvida());
+            
             ps.execute();
+            p.execute();
             r = true;
-            try {
-               closeConnection();
-            } catch (Exception ex) {
-               Logger.getLogger(PsicologoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (SQLException e) {
+        System.out.println("error: " + e);
+        } finally {
+            closeConnection();
+        }
         return r;
     }
 }
