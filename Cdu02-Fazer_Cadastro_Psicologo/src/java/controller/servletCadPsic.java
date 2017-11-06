@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import entidades.Psicologo;
 import entidades.TipoAtendimento;
 import fachadas.PsicologoFacede;
+import fachadas.TipoAtendimentoFacede;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -80,8 +81,6 @@ public class servletCadPsic extends HttpServlet {
              
         String nome = request.getParameter("nome_completo");
         String crp = request.getParameter("crp");
-        //String formAtend = request.getParameter("select_atendimento");
-        //String tipoAtendimento = Arrays.toString(request.getParameterValues("select_atendimento"));
         String rua = request.getParameter("rua");
         String numero = request.getParameter("numero");
         String bairro = request.getParameter("bairro");
@@ -95,7 +94,7 @@ public class servletCadPsic extends HttpServlet {
         TipoAtendimento ta = new TipoAtendimento();
         String[] atend = request.getParameterValues("select_atendimento");
         ta.setCrp(crp);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < atend.length; i++) {
             if (atend[i].equals("privado")){
                 ta.setPrivado(true);
             }
@@ -110,12 +109,9 @@ public class servletCadPsic extends HttpServlet {
             }
         }
         
-        
-        
         Psicologo psic = new Psicologo();
         psic.setCrp(crp);
         psic.setNome(nome);
-        //psic.setForma_atendimento(tipoAtendimento);
         psic.setRua(rua);
         psic.setNumero(numero);
         psic.setBairro(bairro);
@@ -127,7 +123,7 @@ public class servletCadPsic extends HttpServlet {
         psic.setSenha(senha);
                
             try {
-                if (PsicologoFacede.inserir(psic, ta)) {
+                if ( TipoAtendimentoFacede.inserirTP(ta) && PsicologoFacede.inserirPS(psic)) {
                     response.sendRedirect("sucesso.jsp");
                 } else {
                     response.sendRedirect("erro.jsp");

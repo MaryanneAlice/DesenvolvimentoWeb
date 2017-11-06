@@ -8,8 +8,11 @@ package dao;
 import entidades.Psicologo;
 import entidades.TipoAtendimento;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,44 +26,36 @@ import static service.ConexaoBDD.getConnection;
  */
 public class PsicologoDAO {
     
-    private static Connection connection;
-
-    public PsicologoDAO() {
-        connection = ConexaoBDD.getConnection();
-    }
+    private static Connection connection = ConexaoBDD.getConnection();
     
-    public static boolean inserir(Psicologo psic, TipoAtendimento tp) throws SQLException {
+   
+    
+    public static boolean inserirPS(Psicologo psic) throws SQLException {
         boolean r = false;
         getConnection();
-        PreparedStatement ps, p;
+        TipoAtendimentoDAO dao = new TipoAtendimentoDAO();
+        int tpID = dao.tipoAtenID();
+        PreparedStatement ps;
         try {
-            ps = connection.prepareStatement ("INSERT INTO cad_psicologo (crp, nome, rua, numero, bairro, cidade, "
-                    + "telefoneComercial, telefoneOutro, email, login, senha) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+             ps = connection.prepareStatement ("INSERT INTO cad_psicologo (crp, nome, rua, numero, bairro, cidade, "
+                    + "telefoneComercial, telefoneOutro, email, login, senha, forma_atendimento) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);" );
+
             ps.setString(1, psic.getCrp());
             ps.setString(2, psic.getNome());
-            ps.setString(4, psic.getRua());
-            ps.setString(5, psic.getNumero());
-            ps.setString(6, psic.getBairro());
-            ps.setString(7, psic.getCidade());
-            ps.setString(8, psic.getContato());
-            ps.setString(9, psic.getContatoOp());
-            ps.setString(10, psic.getEMail());
-            ps.setString(11, psic.getLogin());
-            ps.setString(12, psic.getSenha());
-            
-            p = connection.prepareStatement("INSERT INTO tipoatendimento (crp, privado, amil, unimedNatal, hapvida)"
-                    + " VALUES (?, ?, ?, ?, ?);");
-            p.setString(1, tp.getCrp());
-            p.setBoolean(2, tp.isPrivado());
-            p.setBoolean(3, tp.isAmil());
-            p.setBoolean(4, tp.isUnimedNatal());
-            p.setBoolean(5, tp.isHapvida());
-            
-            ps.execute();
-            p.execute();
+            ps.setString(3, psic.getRua());
+            ps.setString(4, psic.getNumero());
+            ps.setString(5, psic.getBairro());
+            ps.setString(6, psic.getCidade());
+            ps.setString(7, psic.getContato());
+            ps.setString(8, psic.getContatoOp());
+            ps.setString(9, psic.getEMail());
+            ps.setString(10, psic.getLogin());
+            ps.setString(11, psic.getSenha());
+            ps.setInt(12, tpID);
+            ps.execute(); // filho
             r = true;
         } catch (SQLException e) {
-        System.out.println("error: " + e);
+            System.out.println("error: " + e);
         } finally {
             closeConnection();
         }

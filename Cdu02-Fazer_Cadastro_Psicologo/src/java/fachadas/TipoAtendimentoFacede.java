@@ -5,18 +5,18 @@
  */
 package fachadas;
 
-import dao.PsicologoDAO;
-import entidades.Psicologo;
+import entidades.TipoAtendimento;
+import dao.TipoAtendimentoDAO;
 import java.sql.SQLException;
 
 /**
  *
  * @author marya
  */
-public class PsicologoFacede {
+public class TipoAtendimentoFacede {
     
-    public static boolean inserirPS(Psicologo psic) throws SQLException {
-        return PsicologoDAO.inserirPS(psic);
+    public static boolean inserirTP(TipoAtendimento ta) throws SQLException {
+        return TipoAtendimentoDAO.inserirTP(ta);
     }
     
 }

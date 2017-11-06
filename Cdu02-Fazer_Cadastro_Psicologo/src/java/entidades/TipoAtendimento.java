@@ -10,9 +10,21 @@ package entidades;
  * @author marya
  */
 public class TipoAtendimento {
+    private int tipoAtendimentoID;
+
+    public int getTipoAtendimentoID() {
+        return tipoAtendimentoID;
+    }
+
+    public void setTipoAtendimentoID(int tipoAtendimentoID) {
+        this.tipoAtendimentoID = tipoAtendimentoID;
+    }
     
     private String crp;
-    private boolean privado, amil, unimedNatal, hapvida;
+    private boolean privado = false;
+    private boolean amil = false; 
+    private boolean unimedNatal = false;
+    private boolean hapvida = false;
 
     public TipoAtendimento() {
     }
@@ -57,6 +69,9 @@ public class TipoAtendimento {
         this.hapvida = hapvida;
     }
 
-    
+    @Override
+    public String toString() {
+        return "TipoAtendimento{" + "crp=" + crp + ", privado=" + privado + ", amil=" + amil + ", unimedNatal=" + unimedNatal + ", hapvida=" + hapvida + '}';
+    }
     
 }
