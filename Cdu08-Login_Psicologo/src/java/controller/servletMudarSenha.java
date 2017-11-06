@@ -5,8 +5,8 @@
  */
 package controller;
 
-import entidade.Usuario;
-import fachadas.UsuarioFacede;
+import entidade.MudarSenha;
+import fachadas.MudarSenhaFacede;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author marya
  */
-@WebServlet(name = "servletLogin", urlPatterns = {"/servletLogin"})
-public class servletLogin extends HttpServlet {
+@WebServlet(name = "servletMudarSenha", urlPatterns = {"/servletMudarSenha"})
+public class servletMudarSenha extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +43,10 @@ public class servletLogin extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet servletLogin</title>");            
+            out.println("<title>Servlet servletMudarSenha</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet servletLogin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet servletMudarSenha at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -80,27 +80,28 @@ public class servletLogin extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        String l = request.getParameter("login");
-        String s = request.getParameter("senha");
+        String crp = request.getParameter("crp");
+        String ns = request.getParameter("conf_senha");
         
         HttpSession session = request.getSession(true);
-        session.setAttribute("userSession", l);
+        session.setAttribute("userSession",crp);
         
-        Usuario user = new Usuario(); 
-        user.setLogin(l);
-        user.setSenha(s);
+        MudarSenha ms = new MudarSenha();
+        ms.setCrp(crp);
+        ms.setSenha(ns);
         
-        UsuarioFacede uf = new UsuarioFacede();
-        
-            try {
-                if (uf.verificar(user)) {
-                    response.sendRedirect("sucesso.jsp");
-                } else {
-                    response.sendRedirect("erro.jsp");
-                }
-            } catch (SQLException ex) {   
-                Logger.getLogger(servletLogin.class.getName()).log(Level.SEVERE, null, ex);
-            }   
+        MudarSenhaFacede msf = new MudarSenhaFacede();
+             
+        try {
+            if (msf.mudarSenha(ms)) {
+                response.sendRedirect("index.jsp");
+            } else {
+                response.sendRedirect("erro.jsp");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(servletMudarSenha.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         
     }
 

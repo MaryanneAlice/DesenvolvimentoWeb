@@ -26,19 +26,17 @@
 
 
   </head>
+
   <body>
 
         <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand bem_logo" href="#">bem</a>
+          <a class="navbar-brand bem_logo" href="#">bem</a>
       </div>
     </nav>
-        
-    <!-- Page Content -->
-    <div class="container">
 
-      <!-- Page Heading/Breadcrumbs -->
+    <!-- Page Content -->
         <%
             String user = null;
             if((String)session.getAttribute("userSession") != null){
@@ -47,12 +45,15 @@
                 response.sendRedirect("index.jsp");
             }
         %>
+    <div class="container">
+      <!-- Page Heading/Breadcrumbs -->
       <div class="jumbotron">
-        <h1 class="display-1">Oii</h1>
+        <h1 class="display-1">OPS...</h1>
         <br/><br/><br/>
-        <h1>Seu login está ativado!</h1><br/>
-        <h3>Parabéns, você está habilitado a nos ajudar a fazer o
-            <a class="navbar-brand bem_logo" href="#">bem</a> =D</h3>
+        <h1>Ocorreu um erro! </h1><br/>
+        <h2>Parece que você não está no <a class="navbar-brand bem_logo" href="#">bem</a> =( </h2>
+        <h2> Reveja seu login e sua senha! Venha conosco fazer o <a class="navbar-brand bem_logo" href="#">bem</a> =) </h2>
+        
         <br/>
       </div>
       <!-- /.jumbotron -->

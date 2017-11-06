@@ -3,26 +3,11 @@ $(document).ready(function() {
         message: 'O valor não é válido',
         excluded: [':disabled', ':hidden', ':not(:visible)'],
         feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
+            valid: '',
+            invalid: '',
+            validating: ''
         },
         fields: {
-            nome_completo: {
-                validators: {
-                    notEmpty: {
-                        message: 'O campo é obrigatório'
-                    },
-                    stringLength: {
-                        min: 1,
-                        max: 1000
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z _\.]+$/,
-                         message: 'Texto incompatível'
-                    }
-                }
-            },
             login: {
                 message: 'O login não é válido',
                 validators: {
@@ -68,69 +53,6 @@ $(document).ready(function() {
                             message: 'A senha não pode ser igual a o login'
                         }
                     }
-                },
-            rua: {
-                validators: {
-                    notEmpty: {
-                        message: 'O campo é obrigatório'
-                    },
-                    stringLength: {
-                        min: 1,
-                        max: 1000,
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z _\.]+$/,
-                         message: 'Texto incompatível'
-                    }
-                }
-            },
-            numero: {
-                 validators: {
-                     notEmpty: {
-                         message: 'O campo é obrigatório'
-                     },
-                     regexp: {
-                         regexp: /^[0-9_\.]+$/,
-                          message: 'Texto incompatível'
-                     }
-                 }
-             },
-            bairro: {
-                validators: {
-                    notEmpty: {
-                        message: 'O campo é obrigatório'
-                    },
-                    stringLength: {
-                        min: 1,
-                        max: 1000,
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z _\.]+$/,
-                         message: 'Texto incompatível'
-                    }
-                }
-            },
-            cidade: {
-                validators: {
-                    notEmpty: {
-                        message: 'O campo é obrigatório'
-                    },
-                    stringLength: {
-                        min: 1,
-                        max: 1000,
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z _\.]+$/,
-                         message: 'Texto incompatível'
-                    }
-                }
-            },
-            select_atendimento: {
-                validators: {
-                    notEmpty: {
-                        message: 'O campo é obrigatório'
-                    }
-                }
             },
             crp: {
                  validators: {
@@ -142,25 +64,7 @@ $(document).ready(function() {
                           message: 'Texto incompatível'
                      }
                  }
-             },
-            contato: {
-                 validators: {
-                     regexp: {
-                         regexp: /^[0-9 _\.]+$/,
-                          message: 'Texto incompatível'
-                     }
-                 }
-             },
-            EMail: {
-                validators: {
-                    notEmpty: {
-                        message: 'O campo obrigatório'
-                    },
-                    emailAddress: {
-                        message: 'E-mail inválido'
-                    }
-                }
-            }            
+            }           
         }
     });
 });

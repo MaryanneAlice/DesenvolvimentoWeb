@@ -26,7 +26,6 @@
 
 
   </head>
-
   <body>
 
         <!-- Navigation -->
@@ -41,10 +40,12 @@
 
       <!-- Page Heading/Breadcrumbs -->
         <%
-            String login = null;
-                if((String)session.getAttribute("login") == null){
-                    response.sendRedirect("index.jsp");
-                }
+            String user = null;
+            if((String)session.getAttribute("userSession") != null){
+                user = (String)session.getAttribute("userSession");
+            } else {
+                response.sendRedirect("index.jsp");
+            }
         %>
       <div class="jumbotron">
         <h1 class="display-1">Oii</h1>

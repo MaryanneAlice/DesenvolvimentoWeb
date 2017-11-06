@@ -32,25 +32,27 @@
         <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-          <a class="navbar-brand bem_logo" href="#">bem</a>
+        <a class="navbar-brand bem_logo" href="#">bem</a>
       </div>
     </nav>
-
+        
     <!-- Page Content -->
     <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
         <%
-            String login = null;
-                if((String)session.getAttribute("login") == null){
-                    response.sendRedirect("index.jsp");
-                }
+            String user = null;
+            if((String)session.getAttribute("userSession") != null){
+                user = (String)session.getAttribute("userSession");
+            } else {
+                response.sendRedirect("index.jsp");
+            }
         %>
       <div class="jumbotron">
-        <h1 class="display-1">OPS...</h1>
+        <h1 class="display-1">Oii</h1>
         <br/><br/><br/>
-        <h1>Ocorreu um erro! </h1><br/>
-        <h2>Nossos desenvolvedores já estão trabalhando para resolvê-lo =)</h2>
+        <h1>Sua senha foi alterada com sucesso!</h1><br/>
+        <h3> Faça login, clicando <a class="navbar-brand bem_logo" href="index.jsp">AQUI =D</a> </h3>
         <br/>
       </div>
       <!-- /.jumbotron -->
