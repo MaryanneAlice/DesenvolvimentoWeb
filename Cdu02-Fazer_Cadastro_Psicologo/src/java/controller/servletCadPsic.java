@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -32,8 +33,6 @@ import java.util.logging.Logger;
 @WebServlet(name = "servletCadPsic", urlPatterns = {"/servletCadPsic"})
 public class servletCadPsic extends HttpServlet {
     
-        
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,11 +42,15 @@ public class servletCadPsic extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+    
+    
+    
+    public servletCadPsic() {
+        super();
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-          
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -126,15 +129,16 @@ public class servletCadPsic extends HttpServlet {
                
             try {
                 if ( TipoAtendimentoFacede.inserirTP(ta) && PsicologoFacede.inserirPS(psic)) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("crp", crp);
                     response.sendRedirect("sucesso.jsp");
                 } else {
-                    response.sendRedirect("erro.jsp");
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }   
             } catch (SQLException ex) {
                 Logger.getLogger(servletCadPsic.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-        
     }
 
     /**

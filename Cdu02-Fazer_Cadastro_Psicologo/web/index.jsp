@@ -271,7 +271,7 @@
                             <div class="col-6 col-md-7">
                                 <input type="text" class="form-control" name="login"
                                        data-error="Entre 6 e 20 caracteres"  data-minlength="6" 
-                                       data-maxlenght="20" required/>
+                                       data-maxlength="20" required/>
                                 <div class="help-block with-errors">Campo obrigatório</div>
                                 <span class="" aria-hidden="true"></span>
                             </div>
@@ -288,7 +288,7 @@
                             <div class="col-6 col-md-7">
                                 <input type="password" class="form-control" id="senha" name="senha" 
                                        data-error="Entre 6 e 20 caracteres" data-minlength="6" 
-                                       data-maxlenght="20" required/>
+                                       data-maxlength="20" required/>
                                 <div class="help-block with-errors">Campo obrigatório</div>
                                 <span class="" aria-hidden="true"></span>
                             </div>
@@ -304,6 +304,7 @@
                             </div>
                             <div class="col-6 col-md-7">
                                 <input type="password" class="form-control" name="conf_senha"
+                                 data-error="Entre 6 e 20 caracteres" data-minlength="6" data-maxlength="20" 
                                  data-match="#senha" data-match-error="As senha são diferentes"
                                  required/>
                                 <div class="help-block with-errors">Campo obrigatório</div>
@@ -315,7 +316,7 @@
                 
                 <br/><br/>     
                 
-                <div class="control-group form-group">
+                <div class="control-group form-group has-feedback">
                     <div class="row">
                         <div class="col-6 col-md-12">
                             <input type="checkbox" id="verificacaoInfo" name="verificacaoInfo" value="sim"

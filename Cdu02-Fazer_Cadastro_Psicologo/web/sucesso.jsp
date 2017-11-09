@@ -34,7 +34,13 @@
   </head>
 
   <body>
-
+      <%
+        String crp =(String)session.getAttribute("crp");
+        //redirect user to login page if not logged in
+        if(crp == null){
+            response.sendRedirect("index.jsp");
+        }
+      %>
         <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -46,13 +52,6 @@
     <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
-      
-        <%
-           /* String nome_completo = null;
-                if((String)session.getAttribute("nome") == null){
-                    response.sendRedirect("index.jsp");
-             }*/
-        %>
       <div class="jumbotron">
         <h1 class="display-1">Oii</h1>
         <br/><br/><br/>
