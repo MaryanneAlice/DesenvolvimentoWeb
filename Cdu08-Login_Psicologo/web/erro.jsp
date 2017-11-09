@@ -28,7 +28,14 @@
   </head>
 
   <body>
-
+      <%
+        String crp =(String)session.getAttribute("crp");
+        String login =(String)session.getAttribute("l");
+        //redirect user to login page if not logged in
+        if((crp == null)&&(login == null)){
+            response.sendRedirect("index.jsp");
+        }
+      %>
         <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -37,14 +44,6 @@
     </nav>
 
     <!-- Page Content -->
-        <%
-            String user = null;
-            if((String)session.getAttribute("userSession") != null){
-                user = (String)session.getAttribute("userSession");
-            } else {
-                response.sendRedirect("index.jsp");
-            }
-        %>
     <div class="container">
       <!-- Page Heading/Breadcrumbs -->
       <div class="jumbotron">

@@ -35,6 +35,11 @@ public class servletMudarSenha extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    public servletMudarSenha() {
+        super();
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -83,9 +88,6 @@ public class servletMudarSenha extends HttpServlet {
         String crp = request.getParameter("crp");
         String ns = request.getParameter("conf_senha");
         
-        HttpSession session = request.getSession(true);
-        session.setAttribute("userSession",crp);
-        
         MudarSenha ms = new MudarSenha();
         ms.setCrp(crp);
         ms.setSenha(ns);
@@ -94,9 +96,11 @@ public class servletMudarSenha extends HttpServlet {
              
         try {
             if (msf.mudarSenha(ms)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("crp", crp);
                 response.sendRedirect("index.jsp");
             } else {
-                response.sendRedirect("erro.jsp");
+                request.getRequestDispatcher("erro.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(servletMudarSenha.class.getName()).log(Level.SEVERE, null, ex);

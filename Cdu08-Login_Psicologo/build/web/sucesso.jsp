@@ -26,9 +26,12 @@
     <link href="css/auxiliar.css" rel="stylesheet">
   </head>
   <body>
-      <% if (request.getAttribute("l") == "") { 
+      <%
+        String user =(String)session.getAttribute("l");
+        //redirect user to login page if not logged in
+        if((user == null)){
             response.sendRedirect("index.jsp");
-         }
+        }
       %>
         <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -47,7 +50,8 @@
         <h1>Seu login está ativado!</h1><br/>
         <h3>Parabéns, você está habilitado a nos ajudar a fazer o
             <a class="navbar-brand bem_logo" href="#">bem</a> =D</h3>
-        <br/>
+        <br/><br/>
+        <a href="logout.jsp">logout</a>
       </div>
       <!-- /.jumbotron -->
 

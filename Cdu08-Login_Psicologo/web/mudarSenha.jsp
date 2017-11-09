@@ -51,26 +51,25 @@
         <form class=" form form-signin" data-toggle="validator" role="form" method="post" action="servletMudarSenha">
             <div class="control-group form-group has-feedback">
                     <div class="row">
-                        <div class="col-6 col-md-2">
+                        <div class="col-6 col-md-12">
                             <label class="control-label">C.R.P.</label>
                         </div>
-                    <div class="col-6 col-md-7">
-                        <input type="text" class="form-control" name="crp" placeholder="Insira somente números" maxlength="26"
-                               data-error="Informe somente números" pattern="^[0-9]{1,}$" required autofocus/>
+                    <div class="col-6 col-md-11">
+                        <input type="text" class="form-control" name="crp" placeholder="Insira somente números" 
+                               maxlength="26" pattern="^[0-9]{1,}$" 
+                               required autofocus/>
                         <span class="" aria-hidden="true"></span>
                         <div class="help-block with-errors">Campo Obrigatório</div>
                     </div>
                     </div>
-                </div>
-                <br/>
-                
+                </div>                
                 <div class=" control-group form-group has-feedback">
                     <div class="controls">
                         <div class="row">
-                            <div class="col-6 col-md-2">
+                            <div class="col-6 col-md-12">
                                 <label class="control-label">Senha</label>
                             </div>
-                            <div class="col-6 col-md-7">
+                            <div class="col-6 col-md-11">
                                 <input type="password" class="form-control" id="senha" name="senha" 
                                        data-minlength="6" data-maxlength="20" required/>
                                 <div class="help-block with-errors data-min-error data-max-error">Campo obrigatório</div>
@@ -79,14 +78,13 @@
                         </div>
                     </div>
                 </div>
-                <br/>
                 <div class=" control-group form-group has-feedback">
                     <div class="controls">
                         <div class="row">
-                            <div class="col-6 col-md-2">
+                            <div class="col-6 col-md-12">
                                 <label class="control-label">Confirmação de Senha</label>
                             </div>
-                            <div class="col-6 col-md-7">
+                            <div class="col-6 col-md-11">
                                 <input type="password" class="form-control" name="conf_senha"
                                        data-minlength="6" data-maxlength="20" 
                                  data-match="#senha" data-match-error="As senha são diferentes"
@@ -97,8 +95,14 @@
                         </div>
                     </div>
                 </div>
-            <br/><br/>
-                <input type="submit" class="form-control btn btn-primary btn-cadPsic" value="Mudar Senha"/>
+                <br/>
+                <div class="control-group form-group">
+                    <div class="row">
+                        <div class="col-6 col-md-11">
+                            <input type="submit" class="form-control btn btn-primary btn-cadPsic" value="Mudar Senha"/>
+                        </div>
+                    </div>
+                </div>
         </form>
 
         </div> <!-- /.jumbotron -->

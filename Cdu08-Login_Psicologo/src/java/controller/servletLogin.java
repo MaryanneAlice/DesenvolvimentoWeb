@@ -37,7 +37,10 @@ public class servletLogin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
 
-
+    public servletLogin() {
+        super();
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
    
@@ -82,9 +85,11 @@ public class servletLogin extends HttpServlet {
         
             try {
                 if (uf.verificar(user)) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("l", l);
                     response.sendRedirect("sucesso.jsp");
                 } else {
-                    response.sendRedirect("erro.jsp");
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
             } catch (SQLException ex) {   
                 Logger.getLogger(servletLogin.class.getName()).log(Level.SEVERE, null, ex);
