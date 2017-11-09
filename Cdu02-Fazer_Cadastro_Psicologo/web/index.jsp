@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-6 col-md-7">
                                 <input type="text" class="form-control" name="nome_completo"
-                                       data-error="Somente letras" pattern="^[_A-z ]{1, }$" required/>
+                                       data-error="Somente letras" pattern="[a-zA-Z ]+" required/>
                                 <span class="" aria-hidden="true"></span>
                                 <div class="help-block with-errors">Campo Obrigatório</div>
                             </div>

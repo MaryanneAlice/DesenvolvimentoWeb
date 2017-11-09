@@ -27,8 +27,7 @@ import static service.ConexaoBDD.getConnection;
 public class PsicologoDAO {
     
     private static Connection connection = ConexaoBDD.getConnection();
-    
-   
+ 
     
     public static boolean inserirPS(Psicologo psic) throws SQLException {
         boolean r = false;

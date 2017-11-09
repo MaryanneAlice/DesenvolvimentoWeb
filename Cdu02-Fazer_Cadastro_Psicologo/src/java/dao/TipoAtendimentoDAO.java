@@ -24,24 +24,6 @@ public class TipoAtendimentoDAO {
     
     private static Connection connection = ConexaoBDD.getConnection();
 
-    
-    /*public static void main(String args[]) throws SQLException{
-        int value = 0;
-        final String sql = "SELECT tipoAtendimentoID FROM tipoatendimento;";
-        final PreparedStatement ps = connection.prepareStatement(sql);
-        final ResultSet rs = ps.executeQuery();
-
-        final ResultSetMetaData metaRS = rs.getMetaData();
-        final int columnCount = metaRS.getColumnCount();
-
-        while (rs.next()) {
-            for (int i = 1; i <= columnCount; i++) {
-                value = rs.getInt(i);
-            }
-        }
-        System.out.println("dao.TipoAtendimentoDAO.main() === " + value);
-    }*/
-    
     public static boolean inserirTP(TipoAtendimento tp) throws SQLException {
         boolean r = false;
         getConnection();
