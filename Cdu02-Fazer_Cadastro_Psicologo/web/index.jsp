@@ -48,33 +48,39 @@
         <br/>
         <ol class="breadcrumb"> Seu cadastro será submetido a validação após conclusão.</ol>
         <br/><br/>
-            <form class="form" id="contact-form" method="post" action="servletCadPsic">
-                <div class=" control-group form-group">
+            <form class="form" id="contact-form" data-toggle="validator" role="form" method="post" action="servletCadPsic">
+                <div class=" control-group form-group has-feedback">
                     <div class="controls">
                         <div class="row">
                             <div class="col-6 col-md-2">
                                 <label class="control-label">Nome Completo</label>
                             </div>
                             <div class="col-6 col-md-7">
-                                <input type="text" class="form-control" name="nome_completo" required/>
+                                <input type="text" class="form-control" name="nome_completo"
+                                       data-error="Somente letras" pattern="^[_A-z ]{1, }$" required/>
+                                <span class="" aria-hidden="true"></span>
+                                <div class="help-block with-errors">Campo Obrigatório</div>
                             </div>
                         </div>
                     </div>
                 </div><br/>
-                <div class="control-group form-group">
+                <div class="control-group form-group has-feedback">
                     <div class="row">
                         <div class="col-6 col-md-2">
                             <label class="control-label">C.R.P.</label>
                         </div>
                     <div class="col-6 col-md-7">
-                        <input type="text" class="form-control" name="crp" placeholder="Insira somente números" maxlength="26" required/>
+                        <input type="text" class="form-control" name="crp" placeholder="Insira somente números" maxlength="26"
+                               data-error="Informe somente números" pattern="^[0-9]{1,}$" required/>
+                        <span class="" aria-hidden="true"></span>
+                        <div class="help-block with-errors">Campo Obrigatório</div>
                     </div>
                     </div>
                 </div>
                 <br/>
                 
                 
-                <div class="control-group form-group">
+                <div class="control-group form-group has-feedback">
                     <div class="controls">
                         <div class="row">
                             <div class="col-6 col-md-2">
@@ -109,12 +115,15 @@
                                     </li>
                                 </ul>
                                 </div>
-                                <select name="select_atendimento" class="selectpicker show-menu-arrow form-control" multiple="" required>                    
-                                <option value="privado">Privado</option>
-                                <option value="amil">Amil</option>
-                                <option value="unimed-natal">Unimed Natal</option>
-                                <option value="hapvida">Hapvida</option>
-                            </select>
+                                <select name="select_atendimento" class="selectpicker show-menu-arrow form-control" multiple="" 
+                                        data-error="Campo obrigatório" required>                    
+                                    <option value="privado">Privado</option>
+                                    <option value="amil">Amil</option>
+                                    <option value="unimed-natal">Unimed Natal</option>
+                                    <option value="hapvida">Hapvida</option>
+                                </select>
+                                <span class="" aria-hidden="true"></span>
+                                <div class="help-block with-errors">Campo obrigatório</div>
                             </div>
                         </div>
                     </div>
@@ -131,7 +140,7 @@
                 <table width="100%">
                     <tr>
                         <td>
-                        <div class="control-group form-group">
+                        <div class="control-group form-group has-feedback">
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="col-md-2">
@@ -139,6 +148,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" name="rua" required/>
+                                        <span class="" aria-hidden="true"></span>
+                                        <div class="help-block with-errors">Campo obrigatório</div>
                                     </div>
                                 </div>
                             </div>
@@ -146,14 +157,16 @@
                         </td>
                         <!---->
                         <td>
-                        <div class="control-group form-group">
+                        <div class="control-group form-group has-feedback">
                             <div class="row">
-                                <div class="col-12 col-md-10">
+                                <div class="col-12 col-md-12">
                                     <div class="col-md-2">
                                         <label class="control-label">Número</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" name="numero" required/>
+                                        <input type="text" class="form-control" name="numero"/>
+                                        <span class="" aria-hidden="true"></span>
+                                        <div class="help-block with-errors"> &nbsp;</div>
                                     </div>
                                 </div>
                             </div>
@@ -164,28 +177,34 @@
                 <table width="100%">
                     <tr>
                         <td>
-                        <div class="control-group form-group">
+                        <div class="control-group form-group has-feedback">
                             <div class="row">
                                 <div class="col-6 col-md-12">
                                     <div class="col-md-2">
                                         <label class="control-label">Bairro</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="bairro" required/>
+                                        <input type="text" class="form-control" name="bairro" 
+                                               pattern="^[_A-z0-9 ]{1, }$" required/>
+                                        <div class="help-block with-errors">Campo obrigatório</div>
+                                        <span class="" aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         </td>
                         <td>    
-                        <div class="control-group form-group">
+                        <div class="control-group form-group has-feedback">
                             <div class="row">
                                 <div class="col-6 col-md-12">
                                     <div class="col-md-2">
                                         <label class="control-label">Cidade</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="cidade" required/>
+                                        <input type="text" class="form-control" name="cidade" 
+                                               pattern="^[_A-z0-9 ]{1, }$" required/>
+                                        <div class="help-block with-errors">Campo obrigatório</div>
+                                        <span class="" aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </div>
@@ -200,29 +219,37 @@
                             <label class="control-label">Telefone Comercial</label>
                         </div>
                     <div class="col-6 col-md-7">
-                        <input type="text" class="form-control" name="contato" required/>
+                        <input type="text" class="form-control" name="contato" 
+                               data-error="Somente números" pattern="^[0-9]{1,}$" required/>
+                                <div class="help-block with-errors">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
                     </div>
                     </div>
                 </div>
                 <br/>
-                <div class="control-group form-group">
+                <div class="control-group form-group has-feedback">
                     <div class="row">
                         <div class="col-6 col-md-2">
                             <label class="control-label">Telefone Opcional</label>
                         </div>
                     <div class="col-6 col-md-7">
-                        <input type="text" class="form-control" name="contatoOp" required/>
+                        <input type="text" class="form-control" name="contatoOp" 
+                               data-error="Somente números" pattern="^[0-9]{1,}$" />
+                        <span class="" aria-hidden="true"></span>
                     </div>
                     </div>
                 </div>
                 <br/>
-                <div class="control-group form-group">
+                <div class="control-group form-group has-feedback">
                     <div class="row">
                         <div class="col-6 col-md-2">
                             <label class="control-label">E-mail</label>
                         </div>
                     <div class="col-6 col-md-7">
-                        <input type="text" class="form-control" name="EMail" required/>
+                        <input type="email" class="form-control" name="EMail"
+                               data-error="Por favor, informe seu e-mail corretamente" required/>
+                        <div class="help-block with-errors">Campo obrigatório</div>
+                        <span class="" aria-hidden="true"></span>
                     </div>
                     </div>
                 </div>
@@ -235,40 +262,52 @@
                 </div>
                 <br/>
                 
-                <div class=" control-group form-group">
+                <div class=" control-group form-group has-feedback">
                     <div class="controls">
                         <div class="row">
                             <div class="col-6 col-md-2">
                                 <label class="control-label">Login</label>
                             </div>
                             <div class="col-6 col-md-7">
-                                <input type="text" class="form-control" name="login" required/>
+                                <input type="text" class="form-control" name="login"
+                                       data-error="Entre 6 e 20 caracteres"  data-minlength="6" 
+                                       data-maxlenght="20" required/>
+                                <div class="help-block with-errors">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br/>
-                <div class=" control-group form-group">
+                <div class=" control-group form-group has-feedback">
                     <div class="controls">
                         <div class="row">
                             <div class="col-6 col-md-2">
                                 <label class="control-label">Senha</label>
                             </div>
                             <div class="col-6 col-md-7">
-                                <input type="text" class="form-control" name="senha" required/>
+                                <input type="password" class="form-control" id="senha" name="senha" 
+                                       data-error="Entre 6 e 20 caracteres" data-minlength="6" 
+                                       data-maxlenght="20" required/>
+                                <div class="help-block with-errors">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br/>
-                <div class=" control-group form-group">
+                <div class=" control-group form-group has-feedback">
                     <div class="controls">
                         <div class="row">
                             <div class="col-6 col-md-2">
                                 <label class="control-label">Confirmação de Senha</label>
                             </div>
                             <div class="col-6 col-md-7">
-                                <input type="text" class="form-control" name="conf_senha" required/>
+                                <input type="password" class="form-control" name="conf_senha"
+                                 data-match="#senha" data-match-error="As senha são diferentes"
+                                 required/>
+                                <div class="help-block with-errors">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
@@ -279,8 +318,10 @@
                 <div class="control-group form-group">
                     <div class="row">
                         <div class="col-6 col-md-12">
-                            <input type="checkbox" id="verificacaoInfo" name="verificacaoInfo" value="sim" required>  Declaro que as informações prestadas 
+                            <input type="checkbox" id="verificacaoInfo" name="verificacaoInfo" value="sim"
+                                   data-error="Campo obrigatório" required>  Declaro que as informações prestadas 
                             são verdadeiras, assumindo inteira responsabilidade pelas mesmas. 
+                            <div class="help-block with-errors">Campo obrigatório</div>	
                         </div>
                     </div>
                 </div>
@@ -305,7 +346,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--<script src="js/scriptValidator.js"></script>-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
           var mySelect = $('#first-disabled2');
@@ -326,5 +366,6 @@
           });
         });
     </script>
+    <script src="js/validator.min.js"></script>
   </body>
 </html>

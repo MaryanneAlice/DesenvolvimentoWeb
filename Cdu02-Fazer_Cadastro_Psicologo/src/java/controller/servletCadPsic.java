@@ -91,6 +91,8 @@ public class servletCadPsic extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("conf_senha");
         
+        if (numero == ""){ numero = "s/n"; }
+        
         TipoAtendimento ta = new TipoAtendimento();
         String[] atend = request.getParameterValues("select_atendimento");
         ta.setCrp(crp);
