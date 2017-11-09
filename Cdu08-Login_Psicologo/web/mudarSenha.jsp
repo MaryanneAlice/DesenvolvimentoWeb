@@ -23,10 +23,10 @@
     <link href="css/bootstrap-select.css" rel="stylesheet">
     
     <!--SCRIPT-->
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>-->
-    <!--<script src="js/bootstrap-select.js"></script>
+    <!--
     <script src="js/bootstrapValidator.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
   </head>
     
@@ -48,13 +48,55 @@
 
             <br/><br/>
         
-        <form class=" form form-signin" method="post" action="servletMudarSenha">
-            <label>CRP: </label>
-                <input type="text" name="crp" class="form-control" required autofocus> 
-            <label>Senha: </label>
-                <input type="password" name="senha" class="form-control" required>
-            <label>Confirmação de Senha: </label>
-                <input type="password" name="conf_senha" class="form-control" required>
+        <form class=" form form-signin" data-toggle="validator" role="form" method="post" action="servletMudarSenha">
+            <div class="control-group form-group has-feedback">
+                    <div class="row">
+                        <div class="col-6 col-md-2">
+                            <label class="control-label">C.R.P.</label>
+                        </div>
+                    <div class="col-6 col-md-7">
+                        <input type="text" class="form-control" name="crp" placeholder="Insira somente números" maxlength="26"
+                               data-error="Informe somente números" pattern="^[0-9]{1,}$" required autofocus/>
+                        <span class="" aria-hidden="true"></span>
+                        <div class="help-block with-errors">Campo Obrigatório</div>
+                    </div>
+                    </div>
+                </div>
+                <br/>
+                
+                <div class=" control-group form-group has-feedback">
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-6 col-md-2">
+                                <label class="control-label">Senha</label>
+                            </div>
+                            <div class="col-6 col-md-7">
+                                <input type="password" class="form-control" id="senha" name="senha" 
+                                       data-minlength="6" data-maxlength="20" required/>
+                                <div class="help-block with-errors data-min-error data-max-error">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class=" control-group form-group has-feedback">
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-6 col-md-2">
+                                <label class="control-label">Confirmação de Senha</label>
+                            </div>
+                            <div class="col-6 col-md-7">
+                                <input type="password" class="form-control" name="conf_senha"
+                                       data-minlength="6" data-maxlength="20" 
+                                 data-match="#senha" data-match-error="As senha são diferentes"
+                                 required/>
+                                <div class="help-block with-errors data-min-error data-max-error">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <br/><br/>
                 <input type="submit" class="form-control btn btn-primary btn-cadPsic" value="Mudar Senha"/>
         </form>
@@ -93,5 +135,6 @@
           });
         });
     </script>
+    <script src="js/validator.min.js"></script>
   </body>
 </html>

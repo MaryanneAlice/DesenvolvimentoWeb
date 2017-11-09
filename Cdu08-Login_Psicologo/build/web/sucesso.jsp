@@ -4,6 +4,7 @@
     Author     : marya
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,11 +24,12 @@
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link href="css/auxiliar.css" rel="stylesheet">
-
-
   </head>
   <body>
-
+      <% if (request.getAttribute("l") == "") { 
+            response.sendRedirect("index.jsp");
+         }
+      %>
         <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -39,14 +41,6 @@
     <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
-        <%
-            String user = null;
-            if((String)session.getAttribute("userSession") != null){
-                user = (String)session.getAttribute("userSession");
-            } else {
-                response.sendRedirect("index.jsp");
-            }
-        %>
       <div class="jumbotron">
         <h1 class="display-1">Oii</h1>
         <br/><br/><br/>
@@ -73,8 +67,6 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
   </body>
 
 </html>
-

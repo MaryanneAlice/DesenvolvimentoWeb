@@ -19,12 +19,15 @@
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link href="css/auxiliar.css" rel="stylesheet">
+    <link href="css/selected-css.css" rel="stylesheet">
+    <link href="css/bootstrap-select.css" rel="stylesheet">
     
     <!--SCRIPT-->
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>-->
-    <!--<script src="js/bootstrap-select.js"></script>-->
-    <!--<script src="js/bootstrapValidator.js"></script>-->
+    <!--
+    <script src="js/bootstrapValidator.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="js/bootstrap-select.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
   </head>
     
@@ -42,21 +45,46 @@
         <div class="jumbotron title-page">
             <h3 align="center" class="display-8">Olá, faça seu login no <a class="navbar-brand bem_logo" href="#">bem</a>
             E nos ajude a ajudar!</h3>
-
             <br/>
-        
-        <form class="form form-signin" id="contact-form" method="post" action="servletLogin">
-            <label class="control-label">Login: </label>
-                <input type="text" name="login" class="form-control" required autofocus>
+        <form class="form form-signin" id="contact-form" data-toggle="validator" role="form" method="post" action="servletLogin">
+            <div class=" control-group form-group has-feedback">
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-6 col-md-2">
+                                <label class="control-label">Login</label>
+                            </div>
+                            <div class="col-6 col-md-10">
+                                <input type="text" class="form-control" name="login"
+                                       data-minlength="6" data-maxlength="20" required/>
+                                <div class="help-block with-errors data-min-error data-max-error">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <br/>
-            <label class="control-label">Senha: </label>
-                <input type="password" name="senha"  class="form-control" required>
                 
+                <div class=" control-group form-group has-feedback">
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-6 col-md-2">
+                                <label class="control-label">Senha</label>
+                            </div>
+                            <div class="col-6 col-md-10">
+                                <input type="password" class="form-control" id="senha" name="senha" 
+                                       data-minlength="6" data-maxlength="20"
+                                       required/>
+                                <div class="help-block with-errors data-min-error data-max-error">Campo obrigatório</div>
+                                <span class="" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
             <span><a href="mudarSenha.jsp"> Esqueci minha senha </a></span>
                 <br/><br/>
                 <input type="submit" class="form-control btn btn-primary btn-cadPsic" value="Logar"/>
         </form>
-
         </div> <!-- /.jumbotron -->
     </div> <!-- /.container -->
     <!-- Footer -->
@@ -91,78 +119,6 @@
           });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-    $('.form').bootstrapValidator({
-        message: 'O valor não é válido',
-        excluded: [':disabled', ':hidden', ':not(:visible)'],
-        feedbackIcons: {
-            valid: '',
-            invalid: '',
-            validating: ''
-        },
-        fields: {
-            login: {
-                message: 'O login não é válido',
-                validators: {
-                    notEmpty: {
-                        message: 'O campo é obrigatório!'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 10,
-                        message: 'O login tem entre 6 e 10 letras e/ou números'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_\.]+$/
-                    }
-                }
-            },
-            senha: {
-                validators: {
-                    notEmpty: {
-                        message: 'Campo obrigatório!'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 10,
-                        message: 'A senha tem entre 6 e 10 letras e/ou números'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_\.]+$/
-                    }
-                }
-            },
-            conf_senha: {
-                    validators: {
-                        notEmpty: {
-                            message: 'O campo é obrigatório'
-                        },
-                        identical: {
-                            field: 'senha',
-                            message: 'Ops... A senha não é igual'
-                        },
-                        different: {
-                            field: 'login',
-                            message: 'A senha não pode ser igual a o login'
-                        }
-                    }
-            },
-            crp: {
-                 validators: {
-                     notEmpty: {
-                         message: 'O campo é obrigatório'
-                     },
-                     regexp: {
-                         regexp: /^[0-9_\.]+$/,
-                          message: 'Texto incompatível'
-                     }
-                 }
-            }           
-        }
-    });
-});
-
-    </script>
+    <script src="js/validator.min.js"></script>
   </body>
 </html>

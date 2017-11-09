@@ -29,7 +29,7 @@ public class ConectarBDD {
 
     public static Connection getConnection() {
 
-            try{
+            try {
                 Class.forName("com.mysql.jdbc.Driver");
                 System.out.println("driver encontrado");
             } catch (ClassNotFoundException e) {
