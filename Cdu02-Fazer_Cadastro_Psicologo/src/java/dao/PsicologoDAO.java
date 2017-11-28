@@ -5,17 +5,11 @@
  */
 package dao;
 
+import com.mysql.jdbc.Connection;
 import entidades.Psicologo;
-import entidades.TipoAtendimento;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
+
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import service.ConexaoBDD;
 import static service.ConexaoBDD.closeConnection;
 import static service.ConexaoBDD.getConnection;
@@ -32,8 +26,8 @@ public class PsicologoDAO {
     public static boolean inserirPS(Psicologo psic) throws SQLException {
         boolean r = false;
         getConnection();
-        TipoAtendimentoDAO dao = new TipoAtendimentoDAO();
-        int tpID = dao.tipoAtenID();
+        TipoAtendimentoDAO TAdao = new TipoAtendimentoDAO();
+        int tpID = TAdao.tipoAtenID();
         PreparedStatement ps;
         try {
              ps = connection.prepareStatement ("INSERT INTO cad_psicologo (crp, nome, rua, numero, bairro, cidade, "

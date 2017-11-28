@@ -7,6 +7,8 @@ package fachadas;
 
 import dao.UsuarioDAO;
 import entidade.Usuario;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 /**
@@ -17,7 +19,7 @@ public class UsuarioFacede {
     
     UsuarioDAO dao = new UsuarioDAO();
     
-    public boolean verificar(Usuario user) throws SQLException {
+    public boolean verificar(Usuario user) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return dao.verificacaoLogin(user);
     }
     

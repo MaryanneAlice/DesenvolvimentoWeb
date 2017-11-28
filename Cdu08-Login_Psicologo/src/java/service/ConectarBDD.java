@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -17,7 +18,6 @@ import java.sql.SQLException;
  */
 public class ConectarBDD {
  
-        
     private static Connection connection;
     public PreparedStatement ps;
     public ResultSet rs;
@@ -50,11 +50,35 @@ public class ConectarBDD {
     }
     
 
-    public static Connection closeConnection() throws SQLException {
-        if(connection != null){
-            connection.close();
+    public static void closeConnection(Connection conn, ResultSet rs, PreparedStatement pstmt, Statement stmt) {
+        if (rs != null) {
+            try {
+                System.out.println(" ResultSet [CLOSE] ");
+                rs.close();
+            } catch (SQLException e) {
+            }
         }
-        return connection;
+        if (stmt != null) {
+            try {
+                System.out.println(" Statement [CLOSE] ");
+                stmt.close();
+            } catch (SQLException ex) {
+            }
+        }
+         if (pstmt != null) {
+            try {
+                System.out.println(" PreparedStatement [CLOSE] ");
+                pstmt.close();
+            } catch (SQLException ex) {
+            }
+        }
+        if (conn != null) {
+            try {
+                System.out.println(" Connection [CLOSE] ");
+                conn.close();
+            } catch (SQLException ex) {
+            }
+        }
     }
     
 }

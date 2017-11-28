@@ -5,14 +5,13 @@
  */
 package dao;
 
+import static entidade.Cryptography.Cryptography;
 import entidade.MudarSenha;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import service.ConectarBDD;
 import static service.ConectarBDD.closeConnection;
 import static service.ConectarBDD.getConnection;
@@ -22,27 +21,23 @@ import static service.ConectarBDD.getConnection;
  * @author marya
  */
 public class MudarSenhaDAO {
-    
-    private static Connection connection;
 
-    public MudarSenhaDAO() {
-        connection = ConectarBDD.getConnection();
-    }
+    public MudarSenhaDAO() { }
     
-    public static boolean mudarSenha(MudarSenha ms) throws SQLException {            
+    public static boolean mudarSenha(MudarSenha ms) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {            
         boolean r = false;
-        getConnection();
-        PreparedStatement ps;
+        Connection connection = getConnection();
+        PreparedStatement ps = null;        
     try
-    {
+    {   
         ps = connection.prepareStatement(
-        "update cad_psicologo set senha = '" + ms.getSenha() + "' where crp = '" + ms.getCrp() + "' ;" );
+        "update cad_psicologo set senha = '" + Cryptography(ms.getSenha()) + "' where crp = '" + ms.getCrp() + "' ;" );
         ps.execute();
         r = true; 
     } catch (SQLException e) {
         System.out.println("error: " + e);
     } finally {
-        closeConnection();
+        closeConnection(connection, null, null, null);
     }
         return r;
     }

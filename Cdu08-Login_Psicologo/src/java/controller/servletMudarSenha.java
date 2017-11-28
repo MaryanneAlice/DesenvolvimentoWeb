@@ -9,6 +9,8 @@ import entidade.MudarSenha;
 import fachadas.MudarSenhaFacede;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,11 +81,11 @@ public class servletMudarSenha extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.io.UnsupportedEncodingException
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //processRequest(request, response);
+            throws ServletException, IOException, UnsupportedEncodingException {
         
         String crp = request.getParameter("crp");
         String ns = request.getParameter("conf_senha");
@@ -103,6 +105,8 @@ public class servletMudarSenha extends HttpServlet {
                 request.getRequestDispatcher("erro.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
+            Logger.getLogger(servletMudarSenha.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(servletMudarSenha.class.getName()).log(Level.SEVERE, null, ex);
         }
 

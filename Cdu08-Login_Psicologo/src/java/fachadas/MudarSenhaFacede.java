@@ -7,6 +7,8 @@ package fachadas;
 
 import dao.MudarSenhaDAO;
 import entidade.MudarSenha;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 /**
@@ -15,7 +17,7 @@ import java.sql.SQLException;
  */
 public class MudarSenhaFacede {
             
-    public boolean mudarSenha(MudarSenha ms) throws SQLException {
+    public boolean mudarSenha(MudarSenha ms) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return MudarSenhaDAO.mudarSenha(ms);
     }
     

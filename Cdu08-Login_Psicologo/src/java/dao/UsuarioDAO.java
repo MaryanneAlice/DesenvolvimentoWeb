@@ -5,12 +5,14 @@
  */
 package dao;
 
+import static entidade.Cryptography.Cryptography;
 import entidade.Usuario;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import service.ConectarBDD;
 import static service.ConectarBDD.closeConnection;
 import static service.ConectarBDD.getConnection;
@@ -20,24 +22,19 @@ import static service.ConectarBDD.getConnection;
  * @author marya
  */
 public class UsuarioDAO {
-    
-    private static Connection connection;
 
-    public UsuarioDAO() {
-        connection = ConectarBDD.getConnection();
-    }
+    public UsuarioDAO() { }
     
-    public boolean verificacaoLogin(Usuario user) throws SQLException {       
-            getConnection();
-            
+    public static boolean verificacaoLogin(Usuario user) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {       
           boolean r = false;
-          PreparedStatement ps;
-          ResultSet rs;
+          Connection connection = getConnection();
+          PreparedStatement ps = null;
+          ResultSet rs = null;
             try
             {
                 ps = connection.prepareStatement("select * from cad_psicologo where login = ? and senha = ?;");
                 ps.setString(1, user.getLogin());
-                ps.setString(2, user.getSenha());
+                ps.setString(2, Cryptography(user.getSenha()));
                 rs = ps.executeQuery();
                 if (rs.next()) {
                     r = true; 
@@ -45,7 +42,7 @@ public class UsuarioDAO {
             } catch (SQLException e) {
                 System.out.println("error: " + e);
             } finally {
-                closeConnection();
+                closeConnection(connection, rs, ps, null);
             }
         return r;
     }
